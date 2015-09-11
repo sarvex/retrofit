@@ -29,11 +29,12 @@
   <packaging>pom</packaging>
 
   <name>Retrofit (Parent)</name>
-  <description>Type-safe REST client for Android and Java by Square, Inc.</description>
+  <description>Type-safe HTTP client for Android and Java by Square, Inc.</description>
   <url>http://github.com/square/retrofit/</url>
 
   <modules>
     <module>retrofit</module>
+    <module>retrofit-adapters</module>
     <module>retrofit-converters</module>
     <module>retrofit-mock</module>
     <module>samples</module>
@@ -44,23 +45,27 @@
     <project.reporting.sourceEncoding>UTF-8</project.reporting.sourceEncoding>
 
     <!-- Compilation -->
-    <java.version>1.6</java.version>
+    <java.version>1.7</java.version>
 
     <!-- Dependencies -->
     <android.version>4.1.1.4</android.version>
     <android.platform>16</android.platform>
-    <gson.version>2.3.1</gson.version>
-    <okhttp.version>2.2.0</okhttp.version>
-    <rxjava.version>1.0.0</rxjava.version>
+    <okhttp.version>2.5.0</okhttp.version>
+    <animal.sniffer.version>1.14</animal.sniffer.version>
+
+    <!-- Adapter Dependencies -->
+    <rxjava.version>1.0.14</rxjava.version>
 
     <!-- Converter Dependencies -->
+    <gson.version>2.3.1</gson.version>
     <protobuf.version>2.5.0</protobuf.version>
     <jackson.version>2.4.3</jackson.version>
-    <wire.version>1.5.2</wire.version>
+    <wire.version>1.7.0</wire.version>
     <simplexml.version>2.7.1</simplexml.version>
+    <moshi.version>0.9.0</moshi.version>
 
     <!-- Test Dependencies -->
-    <junit.version>4.11</junit.version>
+    <junit.version>4.12</junit.version>
     <assertj.version>1.7.0</assertj.version>
     <mockito.version>1.9.5</mockito.version>
     <guava.version>18.0</guava.version>
@@ -98,6 +103,11 @@
         <version>${android.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>animal-sniffer-annotations</artifactId>
+        <version>${animal.sniffer.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.squareup.okhttp</groupId>
         <artifactId>okhttp</artifactId>
         <version>${okhttp.version}</version>
@@ -132,6 +142,11 @@
         <groupId>org.simpleframework</groupId>
         <artifactId>simple-xml</artifactId>
         <version>${simplexml.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.moshi</groupId>
+        <artifactId>moshi</artifactId>
+        <version>${moshi.version}</version>
       </dependency>
 
       <dependency>
@@ -190,7 +205,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.9.1</version>
+        <version>2.15</version>
         <configuration>
           <failsOnError>true</failsOnError>
           <configLocation>checkstyle.xml</configLocation>
@@ -204,6 +219,27 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>animal-sniffer-maven-plugin</artifactId>
+        <version>${animal.sniffer.version}</version>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <signature>
+            <groupId>org.codehaus.mojo.signature</groupId>
+            <artifactId>java16</artifactId>
+            <version>1.1</version>
+          </signature>
+        </configuration>
       </plugin>
     </plugins>
   </build>
