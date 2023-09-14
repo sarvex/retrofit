@@ -64,5 +64,5 @@ simpleXml = { module = "org.simpleframework:simple-xml", version = "2.7.1" }
 wireRuntime = { module = "com.squareup.wire:wire-runtime", version = "4.8.1" }
 jsoup = { module = "org.jsoup:jsoup", version = "1.16.1" }
 robovm = { module = "com.mobidevelop.robovm:robovm-rt", version.ref = "robovm" }
-errorproneCore = { module = "com.google.errorprone:error_prone_core", version = "2.10.0" }
+errorproneCore = { module = "com.google.errorprone:error_prone_core", version = "2.21.1" }
 errorproneJavac = { module = "com.google.errorprone:javac", version = "1+" }
