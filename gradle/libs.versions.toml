@@ -15,7 +15,7 @@
 [versions]
 kotlin = "1.9.10"
 okhttp = "4.11.0"
-protobuf = "3.24.3"
+protobuf = "3.24.4"
 robovm = "2.3.20"
 kotlinx-serialization = "1.6.0"
 
